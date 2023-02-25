@@ -33,4 +33,4 @@ https://api2.kiparo.com/static/it_news.xml
 
 ### РЕШЕНИЕ
 
-123456789
+1234567890
