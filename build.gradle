@@ -1,7 +1,9 @@
 plugins {
-    id 'org.jetbrains.kotlin.jvm' version '1.7.10'
+    id 'org.jetbrains.kotlin.jvm' version '1.8.10'
     id 'application'
 }
+
+apply plugin: 'kotlin-kapt'
 
 group = 'my.projects'
 version = '1.0-SNAPSHOT'
@@ -10,8 +12,13 @@ repositories {
     mavenCentral()
 }
 
+
 dependencies {
     testImplementation 'org.jetbrains.kotlin:kotlin-test'
+    implementation 'com.squareup.okhttp3:okhttp:4.10.0'
+    implementation("com.squareup.moshi:moshi:1.14.0")
+    kapt("com.squareup.moshi:moshi-kotlin-codegen:1.14.0")
+
 }
 
 test {
@@ -27,5 +34,5 @@ compileTestKotlin {
 }
 
 application {
-    mainClassName = 'MainKt'
+    mainClass.set('MainKt')
 }

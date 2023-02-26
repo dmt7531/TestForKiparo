@@ -1,7 +1,30 @@
-fun main(args: Array<String>) {
-    println("Hello World!")
+import domain.UserInputOptions
+import domain.usecase.DownloadJsonUseCase
 
-    // Try adding program arguments via Run/Debug configuration.
-    // Learn more about running applications: https://www.jetbrains.com/help/idea/running-applications.html.
-    println("Program arguments: ${args.joinToString()}")
+fun main() {
+
+    val userInput = UserInputOptions().startMenu()
+    if (userInput == 1) {
+        val downloadJson = DownloadJsonUseCase().execute()
+        println(downloadJson.json)
+
+    } else if (userInput == 2) {
+        println("Скачиваем XML")
+    }
+
+
+
 }
+
+
+
+
+
+
+
+//fun checkTransferDayLimit(transferTypeInput: Int): Long {
+//    return when (transferTypeInput) {
+//        1 -> checkCardTransferDayLimit()
+//        2 -> checkVkPayTransferDayLimit()
+//    }
+//}
