@@ -2,8 +2,12 @@ package domain.repository
 
 interface NewsRepository {
 
-    fun save()
+    fun downloadAndSaveJson()
 
-    fun getAll()
+    fun downloadAndSaveXml()
+
+    fun getAllNews()
+
+    fun findByKeyword()
 
 }

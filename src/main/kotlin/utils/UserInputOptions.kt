@@ -1,4 +1,4 @@
-package domain
+package utils
 
 class UserInputOptions {
 

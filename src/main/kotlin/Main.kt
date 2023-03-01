@@ -1,25 +1,20 @@
-import domain.UserInputOptions
-import domain.usecase.DownloadJsonUseCase
+import data.repository.NewsRepositoryImpl
+import datasource.remote.TypeOfDataSourceRemoteImpl
+import domain.model.DownloadJsonOrXmlParams
+import domain.usecase.DownloadJsonOrXmlUseCase
+import utils.UserInputOptions
 
 fun main() {
 
+    val dataSource = TypeOfDataSourceRemoteImpl()
+    val newsRepository = NewsRepositoryImpl(dataSource = dataSource)
+    val downloadJsonOrXmlUseCase = DownloadJsonOrXmlUseCase(newsRepository = newsRepository)
     val userInput = UserInputOptions().startMenu()
-    if (userInput == 1) {
-        val downloadJson = DownloadJsonUseCase().execute()
-        println(downloadJson.json)
 
-    } else if (userInput == 2) {
-        println("Скачиваем XML")
-    }
-
+    downloadJsonOrXmlUseCase.execute(params = DownloadJsonOrXmlParams(inputParams = userInput))
 
 
 }
-
-
-
-
-
 
 
 //fun checkTransferDayLimit(transferTypeInput: Int): Long {
