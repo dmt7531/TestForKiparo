@@ -1,5 +1,7 @@
 package domain.repository
 
+import domain.model.FindNewsByKeywordUseParams
+
 interface NewsRepository {
 
     fun downloadAndSaveJson()
@@ -8,6 +10,6 @@ interface NewsRepository {
 
     fun getAllNews()
 
-    fun findByKeyword()
+    fun findNewsByKeyword(params: FindNewsByKeywordUseParams)
 
 }

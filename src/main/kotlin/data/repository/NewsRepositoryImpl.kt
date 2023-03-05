@@ -1,31 +1,35 @@
 package data.repository
 
 import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import data.datasource.TypeOfDataSource
-import data.storage.local.NewsFromJsonByMoshi
+import data.storage.local.News
+import data.storage.local.NewsList
+import data.storage.local.NewsStorage
+import domain.model.FindNewsByKeywordUseParams
 import domain.repository.NewsRepository
 
-class NewsRepositoryImpl(private val dataSource: TypeOfDataSource) : NewsRepository {
-
+class NewsRepositoryImpl(private val dataSource: TypeOfDataSource, private val newsStorage: NewsStorage) :
+    NewsRepository {
 
 
     override fun downloadAndSaveJson() {
         println("Запрашиваем данные из DataSource")
         val responseFromDataSource = dataSource.downloadJsonData()
+        val json = responseFromDataSource.response
         println("Получили данные из DataSource")
-//        println(responseFromDataSource.response)
 
-        // затем маппит из ApiServiceResponse в коллекцию и сохраняет в Storage
-        val moshi = Moshi.Builder().build()
-        val jsonAdapter = moshi.adapter(NewsFromJsonByMoshi::class.java)
-        val newsList = jsonAdapter.fromJson(responseFromDataSource.response)
-1
-        println(newsList.toString())
+        val moshi = Moshi.Builder()
+            .add(KotlinJsonAdapterFactory())
+            .build()
+        val adapter = moshi.adapter(NewsList::class.java)
+        val newsList = adapter.fromJson(json)
+        println("Распарсили данные с помощью Moshi")
 
-
-
-        // затем маппит из ApiServiceResponse в коллекцию и сохраняет в Storage
-        // ничего не возвращает
+        val news: List<News>? = newsList?.news
+        if (news != null) {
+            newsStorage.save(news)
+        }
     }
 
     override fun downloadAndSaveXml() {
@@ -33,11 +37,12 @@ class NewsRepositoryImpl(private val dataSource: TypeOfDataSource) : NewsReposit
     }
 
     override fun getAllNews() {
-        TODO("Not yet implemented")
+        newsStorage.displayAllNews()
     }
 
-    override fun findByKeyword() {
-        TODO("Not yet implemented")
+    override fun findNewsByKeyword(params: FindNewsByKeywordUseParams) {
+        newsStorage.findNewsByKeyword(params)
     }
+
 
 }

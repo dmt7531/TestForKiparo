@@ -6,14 +6,28 @@ class UserInputOptions {
         var userInputType: String?
         var userInputTypeReturn: Int? = 0
         while (userInputTypeReturn != 1 && userInputTypeReturn != 2) {
-            println("Введите: ")
+            println("\nВведите: ")
             println("1 - чтобы скачать JSON")
-            println("2 - чтобы скачать XML")
+            println("2 - чтобы скачать XML\n")
             userInputType = readlnOrNull()
             userInputTypeReturn = checkUserInputOneOrTwo(userInputType)
         }
         return userInputTypeReturn
     }
+
+    fun secondMenu(): Int {
+        var userInputType: String?
+        var userInputTypeReturn: Int? = 0
+        while (userInputTypeReturn != 1 && userInputTypeReturn != 2) {
+            println("\nВведите: ")
+            println("1 - вывести все новости")
+            println("2 - поиск по keyword\n")
+            userInputType = readlnOrNull()
+            userInputTypeReturn = checkUserInputOneOrTwo(userInputType)
+        }
+        return userInputTypeReturn
+    }
+
 
     private fun checkUserInputOneOrTwo(userInputText: String?): Int? {
         val checkUserInput = userInputText?.toIntOrNull()
@@ -25,4 +39,12 @@ class UserInputOptions {
         return checkUserInput
     }
 
+    fun checkUserInputKeyword(): String {
+        var userInputKeyword: String?
+        while (true) {
+            println("\nВведите keyword:\n")
+            userInputKeyword = readlnOrNull()
+            if (userInputKeyword != null) return userInputKeyword
+        }
+    }
 }
