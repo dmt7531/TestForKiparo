@@ -38,7 +38,7 @@ class NewsStorageImpl : NewsStorage {
                 val formattedDate = formatter.format(date)
                 val title = it.title ?: "Без заголовка"
                 println("\n$formattedDate - $title.")
-                println("${it.description}\n")
+                println("${it.description}")
             }
         } else {
             println("Новости по запросу '$keyword' не найдены.")
