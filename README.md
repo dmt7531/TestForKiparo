@@ -28,4 +28,6 @@
 https://api2.kiparo.com/static/it_news.json  
 https://api2.kiparo.com/static/it_news.xml
 
-### РЕШЕНИЕ
+### Архитектура
+
+![TestForKiparoDiagram](https://user-images.githubusercontent.com/98709135/223137873-11e3603a-8c39-4047-a18c-df9117a07abc.png)
