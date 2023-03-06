@@ -1,17 +1,18 @@
-package data.storage.local
+package data.storage.local.jsonstorage
 
+import data.repository.json.News
+import data.repository.json.NewsStorageJson
 import domain.model.FindNewsByKeywordUseParams
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
-class NewsStorageImpl : NewsStorage {
+class NewsStorageJsonImpl : NewsStorageJson {
 
     private var newsList: List<News> = emptyList()
 
-
     override fun save(newsList: List<News>) {
         this.newsList = newsList
-        println("Сохранили данные в Storage")
+        println("Сохранили данные в StorageJson")
     }
 
     override fun displayAllNews() {
@@ -38,12 +39,11 @@ class NewsStorageImpl : NewsStorage {
                 val formattedDate = formatter.format(date)
                 val title = it.title ?: "Без заголовка"
                 println("\n$formattedDate - $title.")
-                println("${it.description}\n")
+                println("${it.description}")
             }
         } else {
-            println("Новости по запросу '$keyword' не найдены.")
+            println("\nНовости по запросу '$keyword' не найдены.")
         }
     }
 
 }
-

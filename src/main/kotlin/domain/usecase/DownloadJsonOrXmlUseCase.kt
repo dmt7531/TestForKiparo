@@ -6,13 +6,10 @@ import domain.repository.NewsRepository
 class DownloadJsonOrXmlUseCase(private val newsRepository: NewsRepository) {
 
     fun execute(params: DownloadJsonOrXmlParams) {
-
-        return if (params.inputParams == 1) {
+        if (params.inputParams == 1) {
             newsRepository.downloadAndSaveJson()
-
         } else {
             newsRepository.downloadAndSaveXml()
         }
-
     }
 }

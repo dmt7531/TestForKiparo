@@ -6,10 +6,14 @@ interface NewsRepository {
 
     fun downloadAndSaveJson()
 
+    fun getAllNewsFromJson()
+
+    fun findNewsByKeywordFromJson(params: FindNewsByKeywordUseParams)
+
     fun downloadAndSaveXml()
 
-    fun getAllNews()
+    fun getAllNewsFromXml()
 
-    fun findNewsByKeyword(params: FindNewsByKeywordUseParams)
+    fun findNewsByKeywordFromXml(params: FindNewsByKeywordUseParams)
 
 }
