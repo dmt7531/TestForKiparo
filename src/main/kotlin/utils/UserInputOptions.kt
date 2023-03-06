@@ -2,7 +2,7 @@ package utils
 
 class UserInputOptions {
 
-    fun startMenu(): Int {
+    fun firstMenu(): Int {
         var userInputType: String?
         var userInputTypeReturn: Int? = 0
         while (userInputTypeReturn != 1 && userInputTypeReturn != 2) {

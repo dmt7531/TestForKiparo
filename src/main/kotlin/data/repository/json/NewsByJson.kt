@@ -1,4 +1,4 @@
-package data.storage.local
+package data.repository.json
 
 import com.squareup.moshi.Json
 

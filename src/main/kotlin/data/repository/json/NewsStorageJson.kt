@@ -1,8 +1,8 @@
-package data.storage.local
+package data.repository.json
 
 import domain.model.FindNewsByKeywordUseParams
 
-interface NewsStorage {
+interface NewsStorageJson {
 
     fun save(newsList: List<News>)
 
