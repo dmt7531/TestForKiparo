@@ -24,7 +24,7 @@ object ApiService {
                 downloadedData = response.body!!.string()
             }
         } catch (e: IOException) {
-            println("Ошибка подключения: $e");
+            println("Ошибка подключения: $e")
         }
         return ApiServiceResponse(response = downloadedData)
     }
